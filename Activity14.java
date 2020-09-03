@@ -1,12 +1,15 @@
 package lmsProj;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;import org.openqa.selenium.By;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -15,11 +18,9 @@ public class Activity14 {
 	Actions actions;
 	
 	@BeforeMethod
-	public void setup() {
-		  System.setProperty("webdriver.gecko.driver","C:\\Windows\\System32\\geckodriver.exe");
+	public void beforeMethod() {
 		  driver = new FirefoxDriver();
 		     driver.get("https://alchemy.hguy.co/lms/");
-		   //Resize current window to the set dimension
 		     driver.manage().window().maximize();
 		     driver.manage().timeouts().implicitlyWait(20000, TimeUnit.MILLISECONDS);
 		}	
@@ -81,17 +82,18 @@ public class Activity14 {
 			prog = driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[3]/div/div[1]/div/div[1]"));
 			System.out.println("The progress is :" +prog.getText());
 			
-			
+	}	
 			
 		//TakesScreenshot scrShot =((TakesScreenshot)driver);
 	     // String timeStamp;
 	      //timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());	        //Call getScreenshotAs method to create image file	                //File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);	            //Move image file to new destination	                //File DestFile=new File("src/test/resources/"+timeStamp+".jpg");	                //Copy file at destination	                //FileUtils.copyFile(SrcFile, DestFile);	
 			
-			
-		    				
-		}
+//close the browser
+ @AfterTest
+	public void afterMethod() {
+	driver.close();
+						
+			}
 		
-		
-		
-	}
+}
 	
